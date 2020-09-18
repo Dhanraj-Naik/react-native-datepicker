@@ -12,9 +12,7 @@ let style = StyleSheet.create({
   },
   dateIcon: {
     width: 32,
-    height: 32
-  },
-  dateIconContainer: {
+    height: 32,
     marginLeft: 5,
     marginRight: 5
   },
@@ -47,7 +45,7 @@ let style = StyleSheet.create({
     position: 'absolute',
     top: 0,
     height: 42,
-    padding: 20,
+    paddingHorizontal: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center'
