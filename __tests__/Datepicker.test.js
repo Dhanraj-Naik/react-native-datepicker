@@ -1,9 +1,10 @@
 import React from 'react';
-import {Platform, Animated, DatePickerAndroid, Modal, View} from 'react-native';
+import {Platform, Animated, Modal, View} from 'react-native';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Moment from 'moment';
 import DatePicker from '../datepicker.js';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -223,7 +224,7 @@ describe('DatePicker', () => {
     const wrapper = shallow(<DatePicker onDateChange={onDateChange}/>);
     const datePicker = wrapper.instance();
 
-    datePicker.onDatePicked({action: DatePickerAndroid.dismissedAction, year: 2016, month: 5, day: 12});
+    datePicker.onDatePicked({action: DateTimePicker.dismissedAction, year: 2016, month: 5, day: 12});
     datePicker.onDatePicked({action: '', year: 2016, month: 5, day: 12});
 
     expect(wrapper.state('date')).toMatchObject(new Date(2016, 5, 12));
@@ -235,7 +236,7 @@ describe('DatePicker', () => {
     const wrapper = shallow(<DatePicker onDateChange={onDateChange}/>);
     const datePicker = wrapper.instance();
 
-    datePicker.onTimePicked({action: DatePickerAndroid.dismissedAction, hour: 12, minute: 10});
+    datePicker.onTimePicked({action: DateTimePicker.dismissedAction, hour: 12, minute: 10});
     datePicker.onTimePicked({action: '', hour: 12, minute: 10});
 
     expect(wrapper.state('date').getHours()).toEqual(12);
@@ -248,9 +249,9 @@ describe('DatePicker', () => {
     const wrapper = shallow(<DatePicker onDateChange={onDateChange}/>);
     const datePicker = wrapper.instance();
 
-    datePicker.onDatetimePicked({action: DatePickerAndroid.dismissedAction, year: 2016, month: 12, day: 12});
+    datePicker.onDatetimePicked({action: DateTimePicker.dismissedAction, year: 2016, month: 12, day: 12});
     datePicker.onDatetimePicked({action: '', year: 2016, month: 12, day: 12});
-    datePicker.onDatetimeTimePicked(2016, 6, 1, {action: DatePickerAndroid.dismissedAction, hour: 12, minute: 10});
+    datePicker.onDatetimeTimePicked(2016, 6, 1, {action: DateTimePicker.dismissedAction, hour: 12, minute: 10});
     datePicker.onDatetimeTimePicked(2016, 6, 1, {action: '', hour: 12, minute: 10});
 
     expect(wrapper.state('date').getFullYear()).toEqual(2016);
