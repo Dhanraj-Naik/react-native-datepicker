@@ -309,8 +309,8 @@ class DatePicker extends Component {
               <View style={dateInputStyle}>
                 {this.getTitleElement()}
               </View>
-            :
-              <View/>
+              :
+              <View />
           }
           {this._renderIcon()}
           {Platform.OS === 'ios' && <Modal
@@ -347,6 +347,7 @@ class DatePicker extends Component {
                         timeZoneOffsetInMinutes={timeZoneOffsetInMinutes ? timeZoneOffsetInMinutes : null}
                         style={[Style.datePicker, customStyles.datePicker]}
                         locale={locale}
+                        display={'spinner'}
                       />
                     </View>
                     <TouchableComponent
@@ -369,7 +370,7 @@ class DatePicker extends Component {
                       testID={confirmBtnTestID}
                     >
                       <Text allowFontScaling={allowFontScaling}
-                            style={[Style.btnTextText, customStyles.btnTextConfirm]}
+                        style={[Style.btnTextText, customStyles.btnTextConfirm]}
                       >
                         {confirmBtnText}
                       </Text>
@@ -379,8 +380,27 @@ class DatePicker extends Component {
               </TouchableComponent>
             </View>
           </Modal>}
-          {(Platform.OS === 'android' && mode === 'time' && this.state.isPicker)?<DateTimePicker mode="time" value={this.state.date} onChange={this.onTimePicked}/>:null}
-          {(Platform.OS === 'android' && mode === 'date' && this.state.isPicker)?<DateTimePicker mode="date" minimumDate={minDate && this.getDate(minDate)} maximumDate={maxDate && this.getDate(maxDate)} value={this.state.date} onChange={this.onDatePicked}/>:null}
+          {(Platform.OS === 'android' && mode === 'time' && this.state.isPicker) ?
+            <DateTimePicker
+              mode="time"
+              value={this.state.date}
+              onChange={this.onTimePicked}
+              display={'spinner'}
+            />
+            :
+            null
+          }
+          {(Platform.OS === 'android' && mode === 'date' && this.state.isPicker) ?
+            <DateTimePicker
+              mode="date"
+              minimumDate={minDate && this.getDate(minDate)}
+              maximumDate={maxDate && this.getDate(maxDate)}
+              value={this.state.date}
+              onChange={this.onDatePicked}
+              display={'spinner'} />
+            :
+            null
+          }
         </View>
       </TouchableComponent>
     );
